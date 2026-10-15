@@ -1,9 +1,19 @@
-Test-Command: /usr/share/cargo/bin/cargo-auto-test itoa 1.0.1 --all-targets --all-features
-Features: test-name=@
-Depends: dh-cargo (>= 18), @
+Test-Command: /usr/share/cargo/bin/cargo-auto-test itoa 1.0.14 --all-targets --all-features
+Features: test-name=rust-itoa:@
+Depends: dh-cargo (>= 31), rustc (>= 1.36), @
+Restrictions: allow-stderr, skip-not-installable, flaky
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test itoa 1.0.14 --all-targets
+Features: test-name=librust-itoa-dev:default
+Depends: dh-cargo (>= 31), rustc (>= 1.36), @
 Restrictions: allow-stderr, skip-not-installable
 
-Test-Command: /usr/share/cargo/bin/cargo-auto-test itoa 1.0.1 --all-targets --no-default-features
-Features: test-name=librust-itoa-dev
-Depends: dh-cargo (>= 18), @
+Test-Command: /usr/share/cargo/bin/cargo-auto-test itoa 1.0.14 --all-targets --no-default-features --features no-panic
+Features: test-name=librust-itoa-dev:no-panic
+Depends: dh-cargo (>= 31), rustc (>= 1.36), @
+Restrictions: allow-stderr, skip-not-installable, flaky
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test itoa 1.0.14 --all-targets --no-default-features
+Features: test-name=librust-itoa-dev:
+Depends: dh-cargo (>= 31), rustc (>= 1.36), @
 Restrictions: allow-stderr, skip-not-installable
